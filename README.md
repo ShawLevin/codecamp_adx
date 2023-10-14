@@ -36,11 +36,13 @@ AWSCredentials smh = new Amazon.Runtime.BasicAWSCredentials("ACCESS_KEY", "SECRE
         var response = client.ListBucketsAsync().Result;
         Console.WriteLine(response.HttpStatusCode);
 
+        //S3 Bucket
         ListObjectsV2Request listObjReq = new ListObjectsV2Request() { BucketName = "shaw-codecamp-demo"};
         var objects = client.ListObjectsV2Async(listObjReq).Result;
         foreach(var o in objects.S3Objects)
         {
             Console.WriteLine(o.Key);
+            Console.WriteLine(DownloadObjectFromBucketAsync(client, o.BucketName,o.Key,"s3downloads/"+o.Key).Result.ToString());
         }
 
         //Access Point
@@ -51,6 +53,37 @@ AWSCredentials smh = new Amazon.Runtime.BasicAWSCredentials("ACCESS_KEY", "SECRE
         {
             Console.WriteLine(o.Key);
         }
-    }
+
+
+    }    
 }
+         static async Task<bool> DownloadObjectFromBucketAsync(
+            IAmazonS3 client,
+            string bucketName,
+            string objectName,
+            string filePath)
+        {
+            // Create a GetObject request
+            var request = new GetObjectRequest
+            {
+                BucketName = bucketName,
+                Key = objectName,
+            };
+
+            // Issue request and remember to dispose of the response
+            using GetObjectResponse response = await client.GetObjectAsync(request);
+
+            try
+            {
+                // Save object to local file
+                await response.WriteResponseStreamToFileAsync($"{filePath}\\{objectName}", true, CancellationToken.None);
+                return response.HttpStatusCode == System.Net.HttpStatusCode.OK;
+            }
+            catch (AmazonS3Exception ex)
+            {
+                Console.WriteLine($"Error saving {objectName}: {ex.Message}");
+                return false;
+            }
+        }
+
 ```
