@@ -1,2 +1,46 @@
 # codecamp_adx
 Code Camp 2023 ADX Workshop
+
+## Agenda
+* Introductions / Survey
+* AWS Account Setup
+
+![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/d2672f92-9e77-44ef-8d83-f49256504289)
+
+
+![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/040572e4-bd8d-4b70-a9cc-3184ce6139d7)
+
+![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/cd911087-8a52-48d7-8726-a8c2987e8a84)
+
+![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/0944fde5-12e3-4f9a-b5cf-93c57d17d54a)
+
+![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/1e9817a3-20f0-4e2e-9957-bd682dfb7a62)
+
+https://us-east-1.console.aws.amazon.com/dataexchange/home?region=us-east-1#/products/prodview-e2aizdzkos266
+
+```
+using Amazon;
+using Amazon.Runtime;
+using Amazon.Runtime.CredentialManagement;
+using Amazon.S3;
+using Amazon.S3.Model;
+
+Console.WriteLine("Hello, Code Camp!");
+
+AWSCredentials smh = new Amazon.Runtime.BasicAWSCredentials("ACCESS_KEY", "SECRET"); 
+{
+    using (var client = new AmazonS3Client(smh, RegionEndpoint.USEast1))
+    {
+        
+        var response = client.ListBucketsAsync().Result;
+        Console.WriteLine(response.HttpStatusCode);
+
+        ListObjectsV2Request listObjReq = new ListObjectsV2Request() { BucketName = "shaw-codecamp-demo"};
+        var objects = client.ListObjectsV2Async(listObjReq).Result;
+        foreach(var o in objects.S3Objects)
+        {
+            Console.WriteLine(o.Key);
+        }
+    }
+}
+```
