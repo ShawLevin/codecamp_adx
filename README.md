@@ -10,12 +10,11 @@ Code Camp 2023 ADX Workshop
 * Concept: Pass Through vs Copy
 * Subscribe to Products
 * Export data to S3
+* Setup Auto-Export
 * Get data from S3 via Visual Studio.
-* Bonus: Auto-Export of Data
 * Bonus: Redshift
 
 ![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/d2672f92-9e77-44ef-8d83-f49256504289)
-
 
 ![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/040572e4-bd8d-4b70-a9cc-3184ce6139d7)
 
@@ -27,6 +26,7 @@ Code Camp 2023 ADX Workshop
 
 https://us-east-1.console.aws.amazon.com/dataexchange/home?region=us-east-1#/products/prodview-e2aizdzkos266
 https://us-east-2.console.aws.amazon.com/dataexchange/home?region=us-east-2#/products/prodview-maizvnithsspe
+https://us-east-1.console.aws.amazon.com/dataexchange/home?region=us-east-1#/products/prodview-yhh6jo2dubhsy
 
 ```
 using Amazon;
