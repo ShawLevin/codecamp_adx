@@ -17,6 +17,7 @@ Code Camp 2023 ADX Workshop
 ![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/1e9817a3-20f0-4e2e-9957-bd682dfb7a62)
 
 https://us-east-1.console.aws.amazon.com/dataexchange/home?region=us-east-1#/products/prodview-e2aizdzkos266
+https://us-east-2.console.aws.amazon.com/dataexchange/home?region=us-east-2#/products/prodview-maizvnithsspe
 
 ```
 using Amazon;
@@ -38,6 +39,15 @@ AWSCredentials smh = new Amazon.Runtime.BasicAWSCredentials("ACCESS_KEY", "SECRE
         ListObjectsV2Request listObjReq = new ListObjectsV2Request() { BucketName = "shaw-codecamp-demo"};
         var objects = client.ListObjectsV2Async(listObjReq).Result;
         foreach(var o in objects.S3Objects)
+        {
+            Console.WriteLine(o.Key);
+        }
+
+        //Access Point
+        //Discuss requester pays and egress fees.
+        ListObjectsV2Request listObjApReq = new ListObjectsV2Request() { BucketName = "arn:aws:s3:us-east-1:540564263739:accesspoint/418d6540-4b8e-42f5-bf4a-d38add280333",RequestPayer=RequestPayer.Requester};
+        var apObjects = client.ListObjectsV2Async(listObjApReq).Result;
+        foreach(var o in apObjects.S3Objects)
         {
             Console.WriteLine(o.Key);
         }
