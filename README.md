@@ -4,6 +4,15 @@ Code Camp 2023 ADX Workshop
 ## Agenda
 * Introductions / Survey
 * AWS Account Setup
+* Disclaimer: security, costs and clean up.
+* Overview: AWS Marketplace / AWS Data Exchange
+* AWS Data Exchange Terminology: Product / Data Set / Revision / Asset
+* Concept: Pass Through vs Copy
+* Subscribe to Products
+* Export data to S3
+* Get data from S3 via Visual Studio.
+* Bonus: Auto-Export of Data
+* Bonus: Redshift
 
 ![image](https://github.com/ShawLevin/codecamp_adx/assets/4535134/d2672f92-9e77-44ef-8d83-f49256504289)
 
